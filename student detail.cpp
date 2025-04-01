@@ -1,91 +1,68 @@
-#include<iostream>
-#include<string>
+#include <iostream>
 using namespace std;
 
-class person{
-	private:
-		string Name;
-		int age;
+class Person {
+protected:
+    int age;
+    string name;
 
-		
-		
-		public:
-			person(string name,int age){
-					Name=name;
-					age=19;
-			}
-		
-		    virtual void display(){
-		     	cout<<"Name:"<<Name<<endl;
-		     	cout<<"age:"<<age<<endl;
-			 }
-		
-   };
-   
-class student :	public person{
-	private:
-		int RollNo;
-		string branch;
-		int mark;
-		float cgpa;
-		
-	public:
-		student(int RollNo,string branch,int mark,float cgpa)
-		:person (Name,age){
-	     RollNo=roll no;
-		 branch=branch;
-		 mark=mark;
-		 cgpa=cgpa;
-			
-		}
-		
-	    float cgpa(int maerks){
-	    	cgpa=marks/9.5;
-	    	return cgpa;
-		}	
-			
-			void display()override{
-				person::diaplay():
-				cout<<"ROll No:"<<Roll no<<endl;
-				cout<<"branch:"<<branch<<endl;
-				cout<<"mark:"<<mark<<endl;
-				cout<<"CGPA:"<<cgpa<<endl;
-			}
+public:
+    Person(string name, int age) : name(name), age(age) {}
+
+    virtual void display() {
+        cout << "Name: " << name << "\nAge: " << age << endl;
+    }
 };
 
-class  Faculty :	public person{
-	private:
-		int  facultyID;
-		string department;
-		int salary;
-		
-	public:
-		Faculty(int  facultyID,string department,int salary){
-			facultyID=facultyID;
-		    department=departmen;
-		    salary=salary;
-		}
-		void dispaly() override{
-			person::diaplay():
-			cout<<"facultyID:"<<facultyID<<endl;
-			cout<<"department:"<<department<<endl;
-			cout<<"salary:"<<salary<<endl;
-			
-			
-		}
-};   
-   
-//class TeachingAssistant : public student , public Faculty{
-	 
+class Student : public Person {
+protected:
+    int rollN;
+    string branch;
+    float marks;
+
+public:
+    Student(string name, int age, int rollN, string branch, float marks)
+        : Person(name, age), rollN(rollN), branch(branch), marks(marks) {}
+
+    float calculateCGPA() {
+        return marks / 10;
+    }
+
+    void display() override {
+        cout << "Student Details:" << endl;
+        Person::display();
+        cout << "Roll Number: " << rollN << endl;
+        cout << "Branch: " << branch << endl;
+        cout << "Marks: " << marks << ", CGPA: " << calculateCGPA() << endl;
+    }
 };
 
-int main(){
-	person p1("Dikshant Dhanawade",19);
-	p1.display();
-	student s1("Dikshant Danawade",19,"CSE AIML",80,8);
-	s1.diaplay();
-	
-	
-	
-	return 0;
+class Faculty : public Person {
+protected:
+    int f_id;
+    string dp;
+    float salary;
+
+public:
+    Faculty(string name, int age, int f_id, string department, float salary)
+        : Person(name, age), f_id(f_id), dp(department), salary(salary) {}
+
+    void display() override {
+        cout << "Faculty Details:" << endl;
+        Person::display();
+        cout << "Faculty ID: " << f_id << endl;
+        cout << "Department: " << dp << endl;
+        cout << "Salary: " << salary << endl;
+    }
+};
+
+int main() {
+    Student s1("Haris", 20, 26, "AIML", 100);
+    s1.display();
+
+    Faculty f1("Rupali mam", 50, 1111, "AIML", 15000.0);
+    f1.display();
+
+    return 0;
 }
+
