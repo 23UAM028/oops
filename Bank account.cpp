@@ -44,12 +44,12 @@ public:
     void printMiniStatement() {
         cout << "\n==============================\n";
         cout << "Account Holder: " << accountHolder << endl;
-        cout << "Current Balance: $" << balance << endl;
+        cout << "Current Balance: " << balance << endl;
         cout << "==============================\n";
         cout << "Type        Amount\n";
         cout << "----------------------------\n";
         for (int i = 0; i < transactionCount; ++i) {
-            cout << transactions[i].type << "    $" << transactions[i].amount << endl;
+            cout << transactions[i].type << "    " << transactions[i].amount << endl;
         }
         cout << "==============================\n";
     }
@@ -61,7 +61,7 @@ int main() {
 
     cout << "Enter account holder's name: ";
     cin.getline(name, 50);
-    cout << "Enter initial balance: $";
+    cout << "Enter initial balance: ";
     cin >> initialBalance;
 
     BankAccount account(name, initialBalance);
@@ -79,12 +79,12 @@ int main() {
         double amount;
         switch (choice) {
             case 1:
-                cout << "Enter amount to deposit: $";
+                cout << "Enter amount to deposit: ";
                 cin >> amount;
                 account.deposit(amount);
                 break;
             case 2:
-                cout << "Enter amount to withdraw: $";
+                cout << "Enter amount to withdraw: ";
                 cin >> amount;
                 account.withdraw(amount);
                 break;
